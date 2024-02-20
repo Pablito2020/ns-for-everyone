@@ -1,4 +1,4 @@
-FROM archlinux
+FROM --platform=linux/amd64 archlinux
 
 # Update package repositories and install required dependencies
 RUN pacman -Sy --noconfirm && \

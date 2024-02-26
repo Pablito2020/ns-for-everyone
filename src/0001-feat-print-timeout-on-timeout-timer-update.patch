@@ -1,6 +1,6 @@
-From 82c0a69bb1e1034ec406bfe0f896ef3c8cbdcd56 Mon Sep 17 00:00:00 2001
+From dac3488da01c8e5ce8b3f0dadb91adb41451e484 Mon Sep 17 00:00:00 2001
 From: Pablo Fraile Alonso <pablo@pablofraile.net>
-Date: Mon, 26 Feb 2024 15:15:52 +0100
+Date: Mon, 26 Feb 2024 15:39:29 +0100
 Subject: [PATCH] feat: print timeout on timeout timer update
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] feat: print timeout on timeout timer update
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/tcp/tcp.cc b/tcp/tcp.cc
-index a919c8c..d3de9d3 100644
+index a919c8c..de6ee95 100644
 --- a/tcp/tcp.cc
 +++ b/tcp/tcp.cc
 @@ -978,7 +978,10 @@ void TcpAgent::reset_rtx_timer(int mild, int backoff)
@@ -16,7 +16,7 @@ index a919c8c..d3de9d3 100644
  void TcpAgent::set_rtx_timer()
  {
 -	rtx_timer_.resched(rtt_timeout());
-+    double now = Scheduler::instance().clock()
++    double now = Scheduler::instance().clock();
 +    double timeout = rtt_timeout();
 +    printf("Time: %d Timeout %d\n", now, timeout);
 +	rtx_timer_.resched(timeout);

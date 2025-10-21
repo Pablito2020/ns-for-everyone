@@ -1,29 +1,45 @@
-# network simulator 2 (ns-2) for (almost) everyone! 🎉
-Unfortunately, if you're using an ARM computer that isn't an M1 or M2 Mac capable of emulating an x86 architecture via Docker, this image won't be compatible, sorry 🤷
+# Network Simulator 2 (ns-2) for (almost) everyone! 🎉
 
-## How it works
-In [ArchLinux](https://archlinux.org/) it's very easy to install ns-2, since it has a patched version available on the [aur](https://aur.archlinux.org/). This repository simplifies the process by creating a Docker image based on ArchLinux, integrating necessary patches into ns-2, and installing it seamlessly.
+## Requirements
 
-## Added patches
-I've added patches for showing the Reno agent current time and current timeout, for now it shows the result on stdout.
-
-To add a patch, generate it from a git commit using:
+Install [nix](https://nixos.org/), we recommend you to install it via the determinate systems installer:
 
 ```bash
-$ git format-patch -1 <commit SHA>
+$ curl -fsSL https://install.determinate.systems/nix | sh -s -- install --no-confirm
 ```
 
-Then, place the patch in the src/ folder and add it inside the PKGBUILD. You'll need to obtain the SHA256 hash of the .patch file, which can be done with:
+## Usage
+
+You can have a shell with ns already installed with:
 
 ```bash
-$sha256sum <name of patch>
+nix develop git@github.com/pablito2020/ns-for-everyone#ns
 ```
 
-## Execute it:
+You can even run it without spawning a new shell, just do: 
+
+```bash
+nix run git@github.com/pablito2020/ns-for-everyone#ns <your-ns-script> <your-script-args>
+```
+
+If you want to run the patched version that prins the timout, just change `#ns` with `ns-patched`, just like so:
+
+```bash
+# If you want the shell
+nix develop git@github.com/pablito2020/ns-for-everyone#ns-patched
+```
+
+Or, if you want to run it directly:
+
+```bash
+nix run git@github.com/pablito2020/ns-for-everyone.#ns-patched <your-ns-script> <your-script-args>
+```
+
+## Use it with docker
+
 For executing it you can download the image and run a new container:
 
 ```bash
 $ docker pull ghcr.io/pablito2020/ns-for-everyone:main
 $ docker run -it ghcr.io/pablito2020/ns-for-everyone:main
 ```
-

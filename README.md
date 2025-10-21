@@ -13,26 +13,26 @@ $ curl -fsSL https://install.determinate.systems/nix | sh -s -- install --no-con
 You can have a shell with ns already installed with:
 
 ```bash
-nix develop git@github.com/pablito2020/ns-for-everyone#ns
+nix develop github:pablito2020/ns-for-everyone#ns
 ```
 
 You can even run it without spawning a new shell, just do: 
 
 ```bash
-nix run git@github.com/pablito2020/ns-for-everyone#ns <your-ns-script> <your-script-args>
+nix run github:pablito2020/ns-for-everyone#ns <your-ns-script> <your-script-args>
 ```
 
 If you want to run the patched version that prins the timout, just change `#ns` with `ns-patched`, just like so:
 
 ```bash
 # If you want the shell
-nix develop git@github.com/pablito2020/ns-for-everyone#ns-patched
+nix develop github:pablito2020/ns-for-everyone#ns-patched
 ```
 
 Or, if you want to run it directly:
 
 ```bash
-nix run git@github.com/pablito2020/ns-for-everyone.#ns-patched <your-ns-script> <your-script-args>
+nix run github:pablito2020/ns-for-everyone.#ns-patched <your-ns-script> <your-script-args>
 ```
 
 ## Use it with docker
